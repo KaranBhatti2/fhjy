@@ -247,5 +247,12 @@
         }, 1000);
     });
 </script>
+<script>
+        // Listen for the 'deactivated' event
+        Telegram.WebApp.onEvent('deactivated', () => {
+            // Send the "closed" signal back to the bot
+            Telegram.WebApp.sendData('closed');
+        });
+    </script>
 </body>
 </html>
